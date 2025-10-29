@@ -6,9 +6,9 @@ const TAX_RATE = 4.74;
 const GroceryTax = 3;
 
 export function calculateTax(price: number, category: string) {
-    if (category !== 'groceries'){
-return price * (TAX_RATE/100);
-    } else{
-        return price * (GroceryTax/100);
-    }
+  if (category !== "groceries") {
+    return price * (TAX_RATE / 100);
+  } else {
+    return price * (GroceryTax / 100);
+  }
 }

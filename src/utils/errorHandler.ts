@@ -14,21 +14,25 @@
 import Product from "../models/Product";
 
 export class APIError extends Error {
-    statusCode: number;
+  statusCode: number;
 
-    constructor(message: string, statusCode: number) {
-        super(message);
-        this.statusCode = statusCode;
-    }
-
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+  }
 }
 
 export function handleAPIError(error: APIError) {
-    if (error instanceof APIError) {
-        console.error('API Error:', error.message, 'Status Code:', error.statusCode);
-    } else {
-        console.error('An unexpected error occurred:', error);
-    }
+  if (error instanceof APIError) {
+    console.error(
+      "API Error:",
+      error.message,
+      "Status Code:",
+      error.statusCode
+    );
+  } else {
+    console.error("An unexpected error occurred:", error);
+  }
 }
 
 // Now repeat the same for a new custom error class
@@ -36,17 +40,17 @@ export function handleAPIError(error: APIError) {
 // 2. Create a new function that handles Validation errors
 // 3. Use it to throw errors in your discountCalculator and calculateTax utils functions
 
-export class ValidationError extends Error{
-name: string;
-constructor(massage: string){
+export class ValidationError extends Error {
+  name: string;
+  constructor(massage: string) {
     super(massage);
-    this.name = 'ValidationError';
-}
+    this.name = "ValidationError";
+  }
 }
 //let's see how tax and discount be handeled
-export function processOrder(product: Product){
-    if (product.discountPercentage < 0){
-        throw new ValidationError('Discount can not be negative');
-    }
-    console.log('Discount is applied')
+export function processOrder(product: Product) {
+  if (product.discountPercentage < 0) {
+    throw new ValidationError("Discount can not be negative");
+  }
+  console.log("Discount is applied");
 }
