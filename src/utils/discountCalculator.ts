@@ -1,10 +1,22 @@
 import Product from "../models/Product";
+import { ValidationError, validationHandler } from "./errorHandler";
 
-//Create a calculateDiscount() function to handle discount calculations for products.
-export function calculateDiscount(product: Product) {
-  // if (price < 0 || discountPercentage < 0){
-  //     throw new Error("Price and discount Percentage can not be NEGATIVE")
-  // }
-  //This function should return the dollar amount that a product is discounted by. For example, if a product costs $100 and has a 10% discount, the function should return $10.
-  return product.getPriceWithDiscount(); //still confused on it...
+
+export function calculateDiscount(product: Product){
+    try {
+        // use custom error handling to check valid discount
+         if (product.price < 0) {
+      throw new ValidationError("Product price cannot be negative.");
+    }
+
+    if (product.discountPercentage < 0 || product.discountPercentage > 100) {
+      throw new ValidationError("Discount percentage must be between 0 and 100.");
+    }
+     return product.getPriceWithDiscount();
+    } catch (error) {
+        validationHandler(error as ValidationError);
+        return 0; //Fall back
+    }
+   
 }
+

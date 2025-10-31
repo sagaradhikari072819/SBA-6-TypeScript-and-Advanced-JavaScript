@@ -1,33 +1,38 @@
-//Define a Product class that includes the appropriate properties based on data provided in the API response.
+
+//Base class
 export default class Product {
-  id: number;
-  title: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
+    id:number;
+   // title:string;
+   // desciption:string;
+    price:number;
+    discountPercentage:number;
+    category:string;
 
-  constructor(
-    id: number,
-    title: string,
-    category: string,
-    price: number,
-    discountPercentage: number
-  ) {
-    this.id = id;
-    this.title = title;
-    this.category = category;
-    this.price = price;
-    this.discountPercentage = discountPercentage;
-  }
+  
+    constructor(id:number, price:number, discountPercentage:number, category:string){
+        this.id = id;
+        //this.title = title;
+        this.price = price;
+        this.discountPercentage= discountPercentage;
+         this.category = category;
+    }
+    
 
-  //Include methods displayDetails() and getPriceWithDiscount(), and implement them appropriately based on the provided data.
-  displayDetails(): string {
-    return `ID: ${this.id} Title: ${this.title} Category: ${this.category} Price: ${this.price} Discount Percentage: ${this.discountPercentage}`;
-  }
+     displayDetails() {
+        return `Product Id: ${this.id}, Discount Offered: $${this.discountPercentage}, Product Category: ${this.category}, Product Price: $${this.price}`
+     }
 
-  getPriceWithDiscount(): number {
-    //return this.price - ((this.discountPercentage * this.price)/100)
+      getPriceWithDiscount() {
+       // return this.price - (this.price * (this.discountPercentage/100));
+       return this.price * (this.discountPercentage/100);
+         
+     }
 
-    return (this.discountPercentage * this.price) / 100;
-  }
-}
+    }
+
+   
+    
+
+    
+    
+   
